@@ -1,5 +1,6 @@
 const containerImg = document.getElementById("img-container");
 const containerTxt = document.getElementById("txt-container");
+const containerSide = document.getElementById("side-container");
 const images = [ 
     { 
         image: 'img/01.webp', 
@@ -43,15 +44,33 @@ function changeImg(){
     containerTxt.innerHTML = `<h2>${images[index].title}</h2><p>${images[index].text}</p>`
 }
 
+// cambiare l'attiva a lato
+function changeActive(){
+    for(let i = 1; i <= images.length; i++){
+        if(i != index + 1){
+            document.querySelector(`#side-container img:nth-child(${i})`).classList.remove("active");
+        }
+        else{
+            document.querySelector(`#side-container img:nth-child(${i})`).classList.add("active");
+        }
+    }
+}
+
+// cambiare attiva e immagine principale
+function changeAll(){
+    changeImg();
+    changeActive();
+}
+
 // per passare all'immagine successiva
 function nextImg(){
     if(index < images.length - 1){
-        index++;
+        index++;        
     }
     else{
         index=0;
     }
-    changeImg();
+    changeAll();
 }
 
 // per passare all'immagine precedente
@@ -62,5 +81,23 @@ function prevImg(){
     else{
         index=images.length - 1;
     }
-    changeImg();
+    changeAll();
 }
+
+// immagini dell'anteprima
+images.forEach((el, k) => 
+    {
+        const newImg = document.createElement("img");
+        newImg.src=el.image
+        newImg.addEventListener("click",
+            function(){
+                index = k;
+                changeAll();
+            }
+        );
+        if(k === 0){
+            newImg.classList.add("active");
+        }
+        containerSide.appendChild(newImg);
+    }
+);
