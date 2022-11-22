@@ -1,3 +1,5 @@
+const containerImg = document.getElementById("img-container");
+const containerTxt = document.getElementById("txt-container");
 const images = [ 
     { 
         image: 'img/01.webp', 
@@ -25,3 +27,42 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.', 
     } 
 ];
+
+// pagina iniziale
+let index = 0;
+changeImg();
+
+// bottoni precedente e successivo
+document.getElementById("next").addEventListener("click", nextImg);
+
+document.getElementById("prev").addEventListener("click", prevImg);
+
+// per cambiare l'immagine
+function changeImg(){
+    containerImg.innerHTML = `<img src="${images[index].image}">`;
+    containerTxt.innerHTML = `<h2>${images[index].title}</h2><p>${images[index].text}</p>`
+}
+
+// per passare all'immagine successiva
+function nextImg(){
+    if(index < images.length - 1){
+        index++;
+        changeImg();
+    }
+    else{
+        index=0;
+        changeImg();
+    }
+}
+
+// per passare all'immagine precedente
+function prevImg(){
+    if(index > 0){
+        index--;
+        changeImg();
+    }
+    else{
+        index=images.length - 1;
+        changeImg();
+    }
+}

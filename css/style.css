@@ -13,10 +13,29 @@ img{
     max-width: 1170px;
     height: 90vh;
     margin: 5vh auto;
+    position: relative;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+}
+
+#img-container{
+    max-width: 70%;
+    width: fit-content;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+}
+
+#txt-container{
+    /* color: #fff;
+    position: absolute;
+    bottom: 15px;
+    right: 15px; */
+    text-align: right;
+    width: 30%;
 }
 
 button{
