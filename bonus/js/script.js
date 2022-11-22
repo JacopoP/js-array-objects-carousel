@@ -101,3 +101,11 @@ images.forEach((el, k) =>
         containerSide.appendChild(newImg);
     }
 );
+
+let autoSwitch = setInterval(nextImg, 3000);
+document.getElementById("container").addEventListener("click",
+    function(){
+        clearInterval(autoSwitch);
+        autoSwitch = setInterval(nextImg, 3000);
+    }
+);
