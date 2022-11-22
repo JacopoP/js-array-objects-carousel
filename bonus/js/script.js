@@ -102,10 +102,38 @@ images.forEach((el, k) =>
     }
 );
 
+// cambio automatico immagine
 let autoSwitch = setInterval(nextImg, 3000);
-document.getElementById("container").addEventListener("click",
+let autoOn = true;
+let autoRev = false;
+
+// invertire cambio automatico
+document.getElementById("invert").addEventListener("click",
     function(){
-        clearInterval(autoSwitch);
-        autoSwitch = setInterval(nextImg, 3000);
+        if(autoRev){autoRev = false}
+        else{autoRev = true}
+        changeInterval();
     }
 );
+
+// bloccare/riprendere scorrimento automatico
+document.getElementById("start-stop").addEventListener("click",
+    function(){
+        if(autoOn){autoOn = false; this.innerHTML="Riprendi scorrimento automatico";}
+        else{autoOn = true; this.innerHTML="Ferma scorrimento automatico";}
+        changeInterval();
+    }
+);
+
+// istruzioni per cambiare l'instervallo
+function changeInterval(){
+    clearInterval(autoSwitch);
+    if(autoOn){
+        if(autoRev){
+            autoSwitch = setInterval(prevImg, 3000);
+        }
+        else{
+            autoSwitch = setInterval(nextImg, 3000);
+        }
+    }
+}

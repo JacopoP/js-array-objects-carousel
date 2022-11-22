@@ -17,7 +17,7 @@ img{
 #container{
     max-width: 1500px;
     height: 90vh;
-    margin: 5vh auto;
+    margin: calc(5vh - 30px) auto 0;
     display: flex;    
     align-items: center;
     position: relative;
@@ -67,17 +67,31 @@ h2{
 }
 
 button{
+    font-size: 25px;
+    opacity: 0.3;
+    cursor: pointer;
+}
+
+body > button{
+    padding: 2px 5px;
+    background-color: transparent;
+    border: none;
+    margin: 10px;
+}
+
+button:focus-visible{
+    outline: none;
+}
+
+#container > button{
     background-color: #fff;
     width: 35px;
     height: 35px;
-    font-size: 25px;
     border-radius: 25px;
-    opacity: 0.3;
     text-align: center;
     position: absolute;
     right: 15%;
     transform: translate(50%, 0);
-    cursor: pointer;
     z-index: 100;
 }
 
@@ -92,5 +106,3 @@ button#next{
 button:hover{
     opacity: 1;
 }
-
-#side-container img:nth-child()
